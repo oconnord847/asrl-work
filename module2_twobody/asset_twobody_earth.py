@@ -38,9 +38,12 @@ t = traj_arr[:,6] * tstar
 x = traj_arr[:,0] * lstar
 y = traj_arr[:,1] * lstar
 z = traj_arr[:,2] * lstar
+vx = traj_arr[:,3] * lstar / tstar
+vy = traj_arr[:,4] * lstar / tstar
+vz = traj_arr[:,5] * lstar / tstar
 
-np.savetxt("asset_orbit.csv", np.column_stack([t, x, y, z]),
-           delimiter=",", header="t_s,x_km,y_km,z_km", comments="")
+np.savetxt("asset_orbit.csv", np.column_stack([t, x, y, z, vx, vy, vz]),
+           delimiter=",", header="t_s,x_km,y_km,z_km,vx_kms,vy_kms,vz_kms", comments="")
 
 alt = np.sqrt(x**2 + y**2 + z**2) - R_E
 print(f"Saved {len(traj)} points")
